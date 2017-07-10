@@ -30,12 +30,10 @@ import { StatesService }         from '../states.service';
           <br />
           <br />
           <div [hidden]="hideContent" class="panel panel-primary">
-
            <div class="panel-body" style="padding:0;">
             <p class="bg-info" [innerHTML]="data.content" style="padding:10px !important; margin-bottom:0px; "></p>
            </div>
          </div>
-
         </div>
       </div>
     </div>

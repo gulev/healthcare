@@ -1,0 +1,25 @@
+.margin-top{
+  margin-top:5px;
+}
+.overflow-fix{
+  overflow:hidden;
+}
+.custom-header{
+  color:#337ab7;
+}
+.fit{
+  width:45px;
+}
+.fit-longer{
+  width:75px;
+}
+.fit-longest{
+  width:170px;
+}
+.blueHeader{
+  background-color:#337ab7 !important;
+  color:#fff !important;
+}
+.blueBorder{
+  border-color:#337ab7 !important;
+}

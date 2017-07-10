@@ -8,7 +8,7 @@ import { StatesService }     from './states.service';
 import { StatesComponent, NgbdModalContent } from './states/states.component';
 import { AppRoutingModule }  from './app.routing.module';
 import { GlossaryService }     from './glossary.service';
-import { GlossaryComponent } from './glossary/glossary.component';
+import { GlossaryComponent, GlossaryModalContent } from './glossary/glossary.component';
 import { QuestionsComponent } from './questions/questions.component';
 import { TopicsComponent } from './topics/topics.component';
 
@@ -23,9 +23,10 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     GlossaryComponent,
     QuestionsComponent,
     TopicsComponent,
-    NgbdModalContent
+    NgbdModalContent,
+    GlossaryModalContent
   ],
-  entryComponents: [NgbdModalContent],
+  entryComponents: [NgbdModalContent, GlossaryModalContent],
   imports: [
     BrowserModule,
     AppRoutingModule,

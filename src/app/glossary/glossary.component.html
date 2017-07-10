@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-lg-12">
-        <h1 class="page-header custom-header"><span class="fa fa-list-alt"></span> Glossary</h1>
+        <h1 class="page-header custom-header"><span class="fa fa-weibo fa-fw"></span> Glossary</h1>
     </div>
     <!-- /.col-lg-12 -->
 </div>
@@ -10,32 +10,33 @@
   <div class="col-lg-12">
       <div class="panel panel-primary">
           <div class="panel-heading">
-            <span class="fa fa-list-alt"></span>  List Of Glossary
+            <span class="fa fa-weibo fa-fw"></span>  Glossary
           </div>
           <!-- /.panel-heading -->
           <div class="panel-body">
               <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-glossary">
                   <thead>
-                      <tr>
-                          <th>Layout</th>
-                          <th>Lang</th>
-                          <th>Draft</th>
-                          <th>Audiance</th>
-                          <th>Id</th>
-                          <th>Type</th>
+                      <tr class="blueHeader">
+                          <th class="blueBorder">Title</th>
+                          <th class="fit blueBorder">Lang</th>
+                          <th class="blueBorder">Page Name</th>
+                          <th class="fit-longer blueBorder">Audiance</th>
+                          <th class="fit blueBorder">Date</th>
+                          <th class="fit blueBorder">Type</th>
                       </tr>
                   </thead>
                   <tbody>
                       <tr *ngFor="let item of glossary.glossary let i = index;  let odd=odd; let even=even"
-                      >
-                          <td>{{item.layout}}</td>
-                          <td>
-                            {{item.lang}}
+                      [ngClass]="{'info': item.lang=='en'}">
+                          <td>{{item.title}}</td>
+                          <td (click)="showDetails(item)">
+                            <span *ngIf='item.lang=="en"'>   English   </span>
+                            <span *ngIf='item.lang=="es"'>   Spanish   </span>
                           </td>
-                          <td>{{item.draft}}</td>
-                          <td>{{item.page_audience}}</td>
-                          <td>{{item.id}}</td>
-                          <td>{{item.page_type}}</td>
+                          <td (click)="showDetails(item)">{{item.page_name}}</td>
+                          <td (click)="showDetails(item)"><span *ngIf="item.page_audience==all">Available To All</span></td>
+                          <td class="fit-longest" (click)="showDetails(item)">{{item.date | date:'medium'}}</td>
+                          <td (click)="showDetails(item)">{{item.page_type}}</td>
                       </tr>
                   </tbody>
               </table>
