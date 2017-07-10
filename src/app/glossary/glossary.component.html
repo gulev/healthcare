@@ -1,0 +1,49 @@
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header custom-header"><span class="fa fa-list-alt"></span> Glossary</h1>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<!-- /.row -->
+
+<div class="row">
+  <div class="col-lg-12">
+      <div class="panel panel-primary">
+          <div class="panel-heading">
+            <span class="fa fa-list-alt"></span>  List Of Glossary
+          </div>
+          <!-- /.panel-heading -->
+          <div class="panel-body">
+              <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-glossary">
+                  <thead>
+                      <tr>
+                          <th>Layout</th>
+                          <th>Lang</th>
+                          <th>Draft</th>
+                          <th>Audiance</th>
+                          <th>Id</th>
+                          <th>Type</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let item of glossary.glossary let i = index;  let odd=odd; let even=even"
+                      >
+                          <td>{{item.layout}}</td>
+                          <td>
+                            {{item.lang}}
+                          </td>
+                          <td>{{item.draft}}</td>
+                          <td>{{item.page_audience}}</td>
+                          <td>{{item.id}}</td>
+                          <td>{{item.page_type}}</td>
+                      </tr>
+                  </tbody>
+              </table>
+              <!-- /.table-responsive -->
+          </div>
+          <!-- /.panel-body -->
+      </div>
+      <!-- /.panel -->
+  </div>
+  <!-- /.col-lg-12 -->
+</div>
