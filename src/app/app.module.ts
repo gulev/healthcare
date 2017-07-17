@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpInterceptorModule, HttpInterceptorService }      from 'ng-http-interceptor';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Http, HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
@@ -12,7 +13,9 @@ import { GlossaryComponent, GlossaryModalContent } from './glossary/glossary.com
 import { QuestionsComponent } from './questions/questions.component';
 import { TopicsComponent } from './topics/topics.component';
 
-import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { ChartsModule } from 'ng2-charts';
 
 
 @NgModule({
@@ -24,15 +27,18 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     QuestionsComponent,
     TopicsComponent,
     NgbdModalContent,
-    GlossaryModalContent
+    GlossaryModalContent,
+    DashboardComponent
   ],
   entryComponents: [NgbdModalContent, GlossaryModalContent],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpInterceptorModule,
     NgbModule.forRoot(),
     FormsModule,
-    HttpModule
+    HttpModule,
+    ChartsModule
   ],
   providers: [StatesService, GlossaryService],
 

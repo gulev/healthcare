@@ -23,22 +23,24 @@
                           <th class="fit blueBorder">Lang</th>
                           <th class="blueBorder">State Url</th>
                           <th class="blueBorder">Path</th>
-                          <th class="blueBorder">Id</th>
                           <th class="fit blueBorder">Type</th>
+                          <th class="fit blueBorder">Details</th>
                       </tr>
                   </thead>
                   <tbody>
                       <tr *ngFor="let item of states.states let i = index;  let odd=odd; let even=even"
-                      [ngClass]="{'info': item.lang=='en'}">
+                      [ngClass]="{'info': item.lang=='en', 'bold': item == state}">
                           <td>{{item.title}}</td>
-                          <td (click)="showDetails(item)">
+                          <td>
                             <span *ngIf='item.lang=="en"'>   English   </span>
                             <span *ngIf='item.lang=="es"'>   Spanish   </span>
                           </td>
-                          <td (click)="showDetails(item)">{{item.stateurl}}</td>
-                          <td (click)="showDetails(item)">{{item.path}}</td>
-                          <td (click)="showDetails(item)">{{item.id}}</td>
-                          <td (click)="showDetails(item)">{{item.marketplacetype}}</td>
+                          <td>{{item.stateurl}}</td>
+                          <td>{{item.path}}</td>
+                          <td>{{item.marketplacetype}}</td>
+                          <td>
+                            <button class="btn btn-primary" (click)="showDetails(item)" ><span class="fa fa-file-text-o"></span> Details</button>
+                          </td>
                       </tr>
                   </tbody>
               </table>

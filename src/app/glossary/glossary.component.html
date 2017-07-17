@@ -23,20 +23,25 @@
                           <th class="fit-longer blueBorder">Audiance</th>
                           <th class="fit blueBorder">Date</th>
                           <th class="fit blueBorder">Type</th>
+                          <th class="fit blueBorder">Details</th>
+
                       </tr>
                   </thead>
                   <tbody>
                       <tr *ngFor="let item of glossary.glossary let i = index;  let odd=odd; let even=even"
-                      [ngClass]="{'info': item.lang=='en'}">
+                      [ngClass]="{'info': item.lang=='en', 'bold': item == glossaryRecord}">
                           <td>{{item.title}}</td>
-                          <td (click)="showDetails(item)">
+                          <td>
                             <span *ngIf='item.lang=="en"'>   English   </span>
                             <span *ngIf='item.lang=="es"'>   Spanish   </span>
                           </td>
-                          <td (click)="showDetails(item)">{{item.page_name}}</td>
-                          <td (click)="showDetails(item)"><span *ngIf="item.page_audience==all">Available To All</span></td>
-                          <td class="fit-longest" (click)="showDetails(item)">{{item.date | date:'medium'}}</td>
-                          <td (click)="showDetails(item)">{{item.page_type}}</td>
+                          <td>{{item.page_name}}</td>
+                          <td><span *ngIf="item.page_audience==all">Available To All</span></td>
+                          <td class="fit-longest">{{item.date | date:'medium'}}</td>
+                          <td>{{item.page_type}}</td>
+                          <td>
+                            <button class="btn btn-primary" (click)="showDetails(item)" ><span class="fa fa-file-text-o"></span> Details</button>
+                          </td>
                       </tr>
                   </tbody>
               </table>
