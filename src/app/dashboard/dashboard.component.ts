@@ -66,14 +66,14 @@ loadGlossary() {
  }
 
 ngOnInit() {
-      this.loadGlossary();
+   this.loadGlossary();
 }
 
   ngAfterViewInit(){
     //console.log(this)
-    for (let num of this.glossary) {
-        console.log(num);
-    }
+    setTimeout(() => {
+        console.log('View is fully loaded');
+        console.log(this.glossary);
+    }, 1000);
   }
-
 }
