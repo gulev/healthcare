@@ -23,7 +23,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     scaleShowVerticalLines: false,
     responsive: true
   };
-
+ // To Do
+ // Place live data to the barChart
   public barChartLabels:string[] = ['2010', '2012', '2013', '2014', '2015', '2016', '2017'];
   public barChartType:string = 'bar';
   public barChartLegend:boolean = true;
@@ -43,6 +44,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   }
 
   // PolarArea
+  // To Do
+  // Place live data to the polarArea
 public polarAreaChartLabels:string[] = ['Available To All','Unknown Availability', 'Type Glossary', 'Type Unknown'];
 public polarAreaChartData:number[] = [213, 287, 287, 213];
 public polarAreaLegend:boolean = true;
