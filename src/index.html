@@ -47,34 +47,38 @@
   <script src="assets/dist/js/sb-admin-2.js"></script>
   <script>
    $(document).ready(function() {
-     //To Do
-     // remove jquery DataTable and use Angular Datatable
      setTimeout(function(){
        $('#dataTables-states').DataTable({
            responsive: true
        });
-     }, 100);
+     }, 1000);
 
        setTimeout(function(){
          $('#dataTables-glossary').DataTable({
              responsive: true
          });
-       }, 100);
+       }, 1000);
 
        $("#glossary").click(function(){
+          if ( $.fn.DataTable.isDataTable( '#dataTables-glossary' ) ) {
+            return false;
+          }
           setTimeout(function(){
             $('#dataTables-glossary').DataTable({
                 responsive: true
             });
-          }, 100);
+          }, 1000);
        })
 
        $("#states").click(function(){
+         if ( $.fn.DataTable.isDataTable( '#dataTables-states' ) ) {
+           return false;
+         }
           setTimeout(function(){
             $('#dataTables-states').DataTable({
                 responsive: true
             });
-          }, 100);
+          }, 1000);
        })
    });
    </script>
