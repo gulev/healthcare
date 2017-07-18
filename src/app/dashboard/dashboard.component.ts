@@ -73,6 +73,7 @@ loadGlossary() {
  }
 
  reloadData() {
+   console.log("reload data")
    let allPageAudiance:number = 0;
    let otherPageAudiance:number = 0;
    let unknownType:number = 0;
@@ -100,8 +101,8 @@ loadGlossary() {
     this.barChartType = 'bar';
     this.barChartLegend = true;
 
-   this.barChartLabels = [];
-   this.barChartLabels = ['2000'];
+    this.barChartLabels = [];
+    this.barChartLabels = ['2000'];
 
    this.barChartData = [
      {data: [langEs], label: 'Spanish'},
@@ -130,8 +131,10 @@ loadGlossary() {
   ngOnInit() {
      this.loadGlossary();
      this.loadStates();
+     setTimeout(()=>{ this.reloadData() }, 500)
   }
 
   ngAfterViewInit(){
+
   }
 }
