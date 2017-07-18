@@ -3,6 +3,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { Location }               from '@angular/common';
 import { Http }                   from '@angular/http';
 import { GlossaryService }         from '../glossary.service';
+import { StatesService }         from '../states.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -15,9 +16,11 @@ export class DashboardComponent implements OnInit, AfterViewInit {
     private route: ActivatedRoute,
     private location: Location,
     private glossaryService: GlossaryService,
+    private statesService: StatesService,
   ) { }
 
   glossary:Array<any> = [];
+  states:Array<any> = [];
 
   public barChartOptions:any = {
     scaleShowVerticalLines: false,
@@ -25,13 +28,13 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   };
  // To Do
  // Place live data to the barChart
-  public barChartLabels:string[] = ['2010', '2012', '2013', '2014', '2015', '2016', '2017'];
+  public barChartLabels:string[] = ['2000'];
   public barChartType:string = 'bar';
   public barChartLegend:boolean = true;
 
   public barChartData:any[] = [
-    {data: [65, 59, 80, 81, 56, 55, 40], label: 'Spanish'},
-    {data: [28, 48, 40, 19, 86, 27, 90], label: 'English'}
+    {data: [], label: 'Spanish'},
+    {data: [], label: 'English'}
   ];
 
   // events
@@ -65,19 +68,53 @@ loadGlossary() {
    this.glossaryService.getGlossary().subscribe(data => this.glossary = data);
  }
 
+ loadStates(){
+   this.statesService.getStates().subscribe(data => this.states = data)
+ }
+
  reloadData() {
    let allPageAudiance:number = 0;
    let otherPageAudiance:number = 0;
    let unknownType:number = 0;
    let glossaryType:number = 0;
+   let langEn:number = 0;
+   let langEs:number = 0;
 
    this.glossaryService.getGlossary().subscribe(data => this.glossary = data);
+   this.statesService.getStates().subscribe(data => this.states = data);
+
+
+   for(let item of this.states["states"]){
+     if(item.lang === 'en'){
+       langEn = langEn + 1;
+     }else{
+       langEs = langEs + 1;
+     }
+   }
+
+    this.barChartOptions = {
+     scaleShowVerticalLines: false,
+     responsive: true
+   };
+
+    this.barChartType = 'bar';
+    this.barChartLegend = true;
+
+   this.barChartLabels = [];
+   this.barChartLabels = ['2000'];
+
+   this.barChartData = [
+     {data: [langEs], label: 'Spanish'},
+     {data: [langEn], label: 'English'}
+   ]
+
+   console.log(langEs, langEn)
 
    for( let item of this.glossary["glossary"]){
      if(item.page_audience === 'all'){
        allPageAudiance = allPageAudiance + 1
      }else{
-       otherPageAudiance =  otherPageAudiance +1
+       otherPageAudiance =  otherPageAudiance + 1
      }
      if(item.page_type === 'glossary'){
        glossaryType = glossaryType + 1
@@ -86,13 +123,13 @@ loadGlossary() {
      }
 
    }
-   console.log(allPageAudiance,otherPageAudiance)
-   console.log(glossaryType,unknownType)
+
     this.polarAreaChartData = [allPageAudiance, otherPageAudiance, glossaryType, unknownType];
  }
 
   ngOnInit() {
      this.loadGlossary();
+     this.loadStates();
   }
 
   ngAfterViewInit(){
