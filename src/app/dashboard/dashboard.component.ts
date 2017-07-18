@@ -1,4 +1,4 @@
-import { Component, OnInit, AfterViewInit } from '@angular/core';
+import { Component, OnChanges, OnInit, AfterViewInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Location }               from '@angular/common';
 import { Http }                   from '@angular/http';
@@ -65,15 +65,36 @@ loadGlossary() {
    this.glossaryService.getGlossary().subscribe(data => this.glossary = data);
  }
 
-ngOnInit() {
-   this.loadGlossary();
-}
+ reloadData() {
+   let allPageAudiance:number = 0;
+   let otherPageAudiance:number = 0;
+   let unknownType:number = 0;
+   let glossaryType:number = 0;
+
+   this.glossaryService.getGlossary().subscribe(data => this.glossary = data);
+
+   for( let item of this.glossary["glossary"]){
+     if(item.page_audience === 'all'){
+       allPageAudiance = allPageAudiance + 1
+     }else{
+       otherPageAudiance =  otherPageAudiance +1
+     }
+     if(item.page_type === 'glossary'){
+       glossaryType = glossaryType + 1
+     }else{
+       unknownType = unknownType + 1
+     }
+
+   }
+   console.log(allPageAudiance,otherPageAudiance)
+   console.log(glossaryType,unknownType)
+    this.polarAreaChartData = [allPageAudiance, otherPageAudiance, glossaryType, unknownType];
+ }
+
+  ngOnInit() {
+     this.loadGlossary();
+  }
 
   ngAfterViewInit(){
-    //console.log(this)
-    setTimeout(() => {
-        console.log('View is fully loaded');
-        console.log(this.glossary);
-    }, 1000);
   }
 }
